@@ -51,3 +51,4 @@ def read_data(file_name):
 
     except FileNotFoundError:
         print("ERROR: File was not found")
+        
