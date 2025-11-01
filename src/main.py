@@ -2,6 +2,11 @@ import sys
 
 from generate_data import *
 
+# TODO:
+# * Add functions to solve instances of knapsack problem
+#       (Do the research about available options)
+# * Add error-handling
+
 def main():
     if len(sys.argv) == 1:
         print(
