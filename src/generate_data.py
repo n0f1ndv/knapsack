@@ -41,7 +41,13 @@ def generate_data(file_name=None, seed=None):
     if file_name == None:
         file_name = f"{datetime.today().strftime("%Y%m%d%H%M%S")}_random_data.json"
 
-    with open(file_name, "w") as file:
+    with open(file_name, 'w') as file:
         json.dump(raw_data, file)
 
-generate_data()
+def read_data(file_name):
+    try:
+        with open(file_name, 'r') as file:
+            return json.load(file)
+
+    except FileNotFoundError:
+        print("ERROR: File was not found")
