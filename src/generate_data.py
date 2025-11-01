@@ -18,9 +18,25 @@ Example json genereted using this script
 def generate_data(files_name=None, seed=None):
     random.seed(seed)
 
+    print("Please provide minimum, maximum for following parameters:")
+    print("\nitems_number> ")
+    min_num, max_num = list(map(int, input().split()))
     items_number = random.randint(min_num, max_num)
+
+    print("\nvalues> ")
+    min_val, max_val = list(map(int, input().split()))
     values = [random.randint(min_val, max_val) for i in range(items_number)]
+
+    print("\nweight> ")
+    min_wei, max_wei = list(map(int, input().split()))
     weights = [random.randint(min_wei, max_wei) for i in range(items_number)]
+
+    print("\ncapacity> ")
+    min_cap, max_cap = list(map(int, input().split()))
     capacity = random.randint(min_cap, max_cap)
+
+    print("\ncategories> ")
+    min_cat, max_cat = list(map(int, input().split()))
     categories = random.randint(min_cat, max_cat)
+    
     categories_effect = random.random()
