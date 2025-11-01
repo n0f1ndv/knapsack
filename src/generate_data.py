@@ -1,7 +1,6 @@
 import random
 import json
-
-from backend import *
+from datetime import datetime
 
 """
 Example json genereted using this script
@@ -15,28 +14,34 @@ Example json genereted using this script
         "categories_effect": [0.9]
     }
 """
-def generate_data(files_name=None, seed=None):
+def generate_data(file_name=None, seed=None):
     random.seed(seed)
 
+    raw_data = {}
+
     print("Please provide minimum, maximum for following parameters:")
-    print("\nitems_number> ")
-    min_num, max_num = list(map(int, input().split()))
+    min_num, max_num = list(map(int, input("items_number> ").split()))
     items_number = random.randint(min_num, max_num)
+    raw_data["items_number"] = items_number
 
-    print("\nvalues> ")
-    min_val, max_val = list(map(int, input().split()))
-    values = [random.randint(min_val, max_val) for i in range(items_number)]
+    min_val, max_val = list(map(int, input("values> ").split()))
+    raw_data["values"] = [random.randint(min_val, max_val) for i in range(items_number)]
 
-    print("\nweight> ")
-    min_wei, max_wei = list(map(int, input().split()))
-    weights = [random.randint(min_wei, max_wei) for i in range(items_number)]
+    min_wei, max_wei = list(map(int, input("weights> ").split()))
+    raw_data["weights"] = [random.randint(min_wei, max_wei) for i in range(items_number)]
 
-    print("\ncapacity> ")
-    min_cap, max_cap = list(map(int, input().split()))
-    capacity = random.randint(min_cap, max_cap)
+    min_cap, max_cap = list(map(int, input("capacity> ").split()))
+    raw_data["capacity"] = random.randint(min_cap, max_cap)
 
-    print("\ncategories> ")
-    min_cat, max_cat = list(map(int, input().split()))
-    categories = random.randint(min_cat, max_cat)
-    
-    categories_effect = random.random()
+    min_cat, max_cat = list(map(int, input("categories> ").split()))
+    raw_data["categories"] = random.randint(min_cat, max_cat)
+
+    raw_data["categories_effect"] = random.random()
+
+    if file_name == None:
+        file_name = f"{datetime.today().strftime("%Y%m%d%H%M%S")}_random_data.json"
+
+    with open(file_name, "w") as file:
+        json.dump(raw_data, file)
+
+generate_data()
