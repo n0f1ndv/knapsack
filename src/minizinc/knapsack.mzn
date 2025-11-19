@@ -4,8 +4,8 @@ array[1..n] of int: values;
 array[1..n] of int: weights;
 array[1..n] of int: categories;
 
-int: c;
-array[1..c, 1..c] of int: penalties;
+int: m;
+array[1..m, 1..m] of int: penalties;
 
 array[1..n] of var 0..1: x;
 
