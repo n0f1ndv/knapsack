@@ -12,8 +12,9 @@ def main():
         print(
             "Usage: python3 src/main.py <option>",
             "Available options:",
-            "--generate-data - generates random input data based on specified "
+            "--generate-data <file-type> - generates random input data based on specified ",
             "min and max value given by user then saves it in a json file",
+            "   available file types: dzn, json",
             sep='\n'
             )
     else:
@@ -25,9 +26,11 @@ def main():
 
         tmp = input("seed> ")
         seed = int(tmp) if len(tmp) else None
-        print(seed)
 
-        generate_data(file_name, seed)
+        if sys.argv[2] == "dzn":
+            generate_data_dzn(file_name, seed)
+        elif sys.argv[2] == "json":
+            generate_data_json(file_name, seed)
 
 if __name__ == "__main__":
     main()
