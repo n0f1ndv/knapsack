@@ -8,7 +8,7 @@ from genetic_knapsack import *
 # * Add functions to solve instances of knapsack problem
 #       (Do the research about available options)
 # * Add error-handling
-# * Add bash script that calls this program
+# * Add bash script that runs whole wrokflow
 def main():
     if len(sys.argv) == 1:
         print(
@@ -33,8 +33,10 @@ def main():
 
         if sys.argv[2] == "dzn":
             generate_data_dzn(file_name, seed)
+            
         elif sys.argv[2] == "json":
             generate_data_json(file_name, seed)
+
         else:
             print("Option was not recognized. Available options:")
             exit(1)
@@ -43,8 +45,10 @@ def main():
         print("WORK IN PROGRESS (:_-_;)\n")
         if sys.argv[2] == "greedy":
             greedy_knapsack(sys.argv[3])
+
         elif sys.argv[2] == "genetic":
-            genetic_knapsack(sys.argv[3])
+            genetic_knapsack(sys.argv[3], "src/settings/genetic_settings.json")
+
         else:
             print("Option was not recognized. Available options:")
             exit(1)

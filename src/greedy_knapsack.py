@@ -13,9 +13,9 @@ def greedy_knapsack(path_to_file):
     current_weight = 0
     penalty_value = 0
 
-    final_weights = []
-    final_values = []
-    final_categories = []
+    best_weights = []
+    best_values = []
+    best_categories = []
 
     while len(data["values"]):
         max_value = max(data["values"])
@@ -24,22 +24,23 @@ def greedy_knapsack(path_to_file):
         if (current_weight + data["weights"][(max_value_index)] > data["capacity"]):
             break
         else:
-            final_weights.append(data["values"].pop(max_value_index))
-            final_values.append(data["weights"].pop(max_value_index))
-            final_categories.append(data["categories"].pop(max_value_index))
+            best_weights.append(data["values"].pop(max_value_index))
+            best_values.append(data["weights"].pop(max_value_index))
+            best_categories.append(data["categories"].pop(max_value_index))
 
-            current_value += final_values[-1]
-            current_weight += final_weights[-1]
+            current_value += best_values[-1]
+            current_weight += best_weights[-1]
 
-        print(f"Element used: weight = {final_weights[-1]}, value = {final_values[-1]}, category = {final_categories[-1]}")
+        print(f"Element used: weight = {best_weights[-1]}, value = {best_values[-1]}, category = {best_categories[-1]}")
 
-    for i in range(len(final_categories) - 1):
-        if (final_categories[i+1] > final_categories[i]):
-            penalty_value += (data["penalties"][f"{final_categories[i]}{final_categories[i+1]}"] / 100) * (final_values[i] + final_values[i+1])
+    # TODO: IF CATEGORIES ARE THE SAME DO NOT COUNT PENALTY
+    for i in range(len(best_categories) - 1):
+        if (best_categories[i+1] > best_categories[i]):
+            penalty_value += (data["penalties"][f"{best_categories[i]}{best_categories[i+1]}"] / 100) * (best_values[i] + best_values[i+1])
         else:
-            penalty_value += (data["penalties"][f"{final_categories[i+1]}{final_categories[i]}"] / 100) * (final_values[i] + final_values[i+1])
+            penalty_value += (data["penalties"][f"{best_categories[i+1]}{best_categories[i]}"] / 100) * (best_values[i] + best_values[i+1])
 
     print("!!! Solution found: ", f"Value: {current_value}", f"Weight: {current_weight}", sep="\n")
     print("!!! Calculated penalty: ", f"Penalty: {penalty_value}")
     print("!!! Solution after subtracting penalty: ", f"Value: {current_value - penalty_value}", sep="\n")
-    print("!!! Elements used:", f"Values: {final_values}", f"Weights: {final_weights}", f"Categories: {final_categories}", sep="\n")
+    print("!!! Elements used:", f"Values: {best_values}", f"Weights: {best_weights}", f"Categories: {best_categories}", sep="\n")
