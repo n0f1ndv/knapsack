@@ -11,4 +11,7 @@ This command generates data for  given problem and writes it in json format:
     `python3 src/main.py --generate-data json`
     
 This command runs greedy algorithm to solve instance of problem:
-    `python3 src/main.py --solve greedy data/example0.json`
+    `python3 src/main.py --solve greedy data/example1.json`
+
+This command runs genetic algorithm to solve instance of problem:
+    `python3 src/main.py --solver genetic data/example1.json`
