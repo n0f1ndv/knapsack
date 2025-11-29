@@ -41,9 +41,9 @@ def main():
     if sys.argv[1] == "--solve":
         print("WORK IN PROGRESS (:_-_;)\n")
         if sys.argv[2] == "greedy":
-            greedy_knapsack()
-        if sys.argv[2] == "":
-            knapsack()
+            greedy_knapsack("data/example2.json")
+        elif sys.argv[2] == "":
+            knapsack(path_to_file)
         else:
             print("Option was not recognized. Available options:")
             exit(1)

@@ -70,11 +70,20 @@ def generate_data_dzn(file_name=None, seed=None):
             file.write("|")
         file.write("];\n")
 
-def read_data_json(file_name):
+def read_data_json(file_name, output_data=False):
     try:
         with open(file_name, 'r') as file:
-            return json.load(file)
+            data = json.load(file)
+
+            if (output_data):
+                print(f"n = {data["items_number"]}")
+                print(f"capacity = {data["capacity"]}")
+                print(f"values = {data["values"]}")
+                print(f"categories = {data["categories"]}")
+                print(f"m = {data["categories_number"]}")
+                print(f"penalties = {data["penalties"]}")
+
+            return data
 
     except FileNotFoundError:
         print("ERROR: File was not found")
-        
