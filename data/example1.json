@@ -1,1 +1,1 @@
-{"items_number": 4, "values": [18, 12, 15, 16], "weights": [62, 45, 57, 47], "capacity": 110, "categories_number": 3, "categories": [2, 0, 2, 2], "penalties": {"00": 19, "01": 18, "02": 18, "11": 20, "12": 17, "22": 12}}
+{"items_number": 4, "values": [14, 11, 10, 13], "weights": [20, 13, 17, 15], "capacity": 50, "categories_number": 4, "categories": [3, 2, 3, 0], "penalties": {"00": 20, "01": 15, "02": 13, "03": 14, "11": 15, "12": 18, "13": 12, "22": 15, "23": 18, "33": 18}}

@@ -1,7 +1,8 @@
 import sys
 
 from generate_data import *
-from knapsack import *
+from greedy_knapsack import *
+from genetic_knapsack import *
 
 # TODO:
 # * Add functions to solve instances of knapsack problem
