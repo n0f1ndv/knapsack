@@ -17,12 +17,12 @@ def greedy_knapsack(path_to_file):
         if (current_weight + data["weights"][(max_value_index)] > data["capacity"]):
             break
         else:
-            value_used = data["values"].pop(max_value_index)
-            weight_used = data["weights"].pop(max_value_index)
-            current_value += value_used
-            current_weight += weight_used
+            last_used_value = data["values"].pop(max_value_index)
+            last_used_weight = data["weights"].pop(max_value_index)
+            current_value += last_used_value
+            current_weight += last_used_weight
 
-        print(f"Element used: weight = {weight_used}, value = {value_used}")
+        print(f"Element used: weight = {last_used_weight}, value = {last_used_value}")
 
     print("!!! Solution found: ", f"Value: {current_value}", f"Weight: {current_weight}", sep="\n")
 
