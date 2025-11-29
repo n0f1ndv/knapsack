@@ -32,7 +32,10 @@ def generate_data(seed=None):
     penalties = {}
     for i in range(categories_number):
         for j in range(i, categories_number):
-            penalties[f"{i}{j}"] = random.randint(min_pen, max_pen)
+            if (i == j):
+                continue
+            else:
+                penalties[f"{i}{j}"] = random.randint(min_pen, max_pen)
 
     return items_number, values, weights, capacity, categories_number, categories, penalties
 

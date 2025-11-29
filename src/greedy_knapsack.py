@@ -35,10 +35,11 @@ def greedy_knapsack(path_to_file):
 
     # TODO: IF CATEGORIES ARE THE SAME DO NOT COUNT PENALTY
     for i in range(len(best_categories) - 1):
-        if (best_categories[i+1] > best_categories[i]):
-            penalty_value += (data["penalties"][f"{best_categories[i]}{best_categories[i+1]}"] / 100) * (best_values[i] + best_values[i+1])
-        else:
-            penalty_value += (data["penalties"][f"{best_categories[i+1]}{best_categories[i]}"] / 100) * (best_values[i] + best_values[i+1])
+        if (best_categories[i+1] != best_categories[i]):
+            if (best_categories[i+1] > best_categories[i]):
+                penalty_value += (data["penalties"][f"{best_categories[i]}{best_categories[i+1]}"] / 100) * (best_values[i] + best_values[i+1])
+            else:
+                penalty_value += (data["penalties"][f"{best_categories[i+1]}{best_categories[i]}"] / 100) * (best_values[i] + best_values[i+1])
 
     print("!!! Solution found: ", f"Value: {current_value}", f"Weight: {current_weight}", sep="\n")
     print("!!! Calculated penalty: ", f"Penalty: {penalty_value}")
