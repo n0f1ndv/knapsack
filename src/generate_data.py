@@ -27,7 +27,10 @@ def generate_data(seed=None):
     categories = [random.randint(0, categories_number - 1) for i in range(items_number)]
 
     min_pen, max_pen = list(map(int, input("penalties> ").split()))
-    penalties = [[random.randint(min_pen, max_pen) for i in range(items_number)] for j in range(items_number)]
+    penalties = {}
+    for i in range(categories_number):
+        for j in range(i, categories_number):
+            penalties[f"{i}{j}"] = random.randint(min_pen, max_pen)
 
     return items_number, values, weights, capacity, categories_number, categories, penalties
 
@@ -47,7 +50,7 @@ def generate_data_json(file_name=None, seed=None):
     if file_name == None:
         file_name = f"{datetime.today().strftime("%Y%m%d%H%M%S")}_random_data"
 
-    with open(f"{file_name}.json", 'w') as file:
+    with open(f"data/{file_name}.json", 'w') as file:
         json.dump(raw_data, file)
 
 def generate_data_dzn(file_name=None, seed=None):
@@ -56,7 +59,7 @@ def generate_data_dzn(file_name=None, seed=None):
     if file_name == None:
         file_name = f"{datetime.today().strftime("%Y%m%d%H%M%S")}_random_data"
 
-    with open(f"{file_name}.dzn", 'w') as file:
+    with open(f"src/minizinc/{file_name}.dzn", 'w') as file:
         file.write(f"n = {items_number};\n")
         file.write(f"capacity = {capacity};\n")
         file.write(f"values = {values};\n")
