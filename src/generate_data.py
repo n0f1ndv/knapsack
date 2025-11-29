@@ -60,6 +60,7 @@ def generate_data_dzn(file_name=None, seed=None):
         file.write(f"n = {items_number};\n")
         file.write(f"capacity = {capacity};\n")
         file.write(f"values = {values};\n")
+        file.write(f"weights = {weights};\n")
         file.write(f"categories = {categories};\n")
         file.write(f"m = {categories_number};\n")
 
@@ -76,12 +77,15 @@ def read_data_json(file_name, output_data=False):
             data = json.load(file)
 
             if (output_data):
+                print(5*"=", f"Data provided from {file_name}", 5*"=")
                 print(f"n = {data["items_number"]}")
                 print(f"capacity = {data["capacity"]}")
                 print(f"values = {data["values"]}")
+                print(f"weights = {data["weights"]}")
                 print(f"categories = {data["categories"]}")
                 print(f"m = {data["categories_number"]}")
                 print(f"penalties = {data["penalties"]}")
+                print(50*"=")
 
             return data
 

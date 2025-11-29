@@ -1,9 +1,10 @@
-from time import sleep
-
 from generate_data import read_data_json
 
-# Sorting array by sorting it in ratio of value to weight
+# TODO: Add another methods of picking items (by weight, by ratio, by penalties)
+# Picking highest value items first
 def greedy_knapsack(path_to_file):
+    print("!!! Solving using greedy algorithm")
+
     data = read_data_json(path_to_file, True)
 
     current_value = 0
@@ -23,7 +24,7 @@ def greedy_knapsack(path_to_file):
 
         print(f"Element used: weight = {weight_used}, value = {value_used}")
 
-    print("Solution found: ", f"Value: {current_value}", f"Weight: {current_weight}", sep="\n")
+    print("!!! Solution found: ", f"Value: {current_value}", f"Weight: {current_weight}", sep="\n")
 
 def knapsack():
     pass
