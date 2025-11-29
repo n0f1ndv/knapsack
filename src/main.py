@@ -43,8 +43,8 @@ def main():
         print("WORK IN PROGRESS (:_-_;)\n")
         if sys.argv[2] == "greedy":
             greedy_knapsack(sys.argv[3])
-        elif sys.argv[2] == "":
-            knapsack(sys.argv[3])
+        elif sys.argv[2] == "genetic":
+            genetic_knapsack(sys.argv[3])
         else:
             print("Option was not recognized. Available options:")
             exit(1)
