@@ -14,4 +14,4 @@ This command runs greedy algorithm to solve instance of problem:
     `python3 src/main.py --solve greedy data/example1.json`
 
 This command runs genetic algorithm to solve instance of problem:
-    `python3 src/main.py --solver genetic data/example1.json`
+    `python3 src/main.py --solve genetic data/example1.json`

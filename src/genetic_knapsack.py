@@ -2,6 +2,7 @@ import random
 
 from generate_data import read_data_json
 
+# TODO: Fix bug with calculating penalties
 def genetic_knapsack(path_to_input_data_file, path_to_settings_file):
     def calculate_fitness(individual, values, weights, capacity, categories, penalties):
         total_value = sum(values[i] for i in range(len(individual)) if individual[i] == 1)
@@ -18,7 +19,7 @@ def genetic_knapsack(path_to_input_data_file, path_to_settings_file):
 
         return total_value - total_penalty
 
-    data = read_data_json(path_to_file)
+    data = read_data_json(path_to_input_data_file, True)
     items_number = data["items_number"]
     values = data["values"]
     weights = data["weights"]
@@ -74,6 +75,6 @@ def genetic_knapsack(path_to_input_data_file, path_to_settings_file):
             total_penalty += penalties.get(key, 0)
     
     print("!!! Solution found: ", f"Value: {total_value}", f"Weight: {total_weight}", sep="\n")
-    print("!!! Calculated penalty: ", f"Penalty: {total_penalty}")
+    print(f"!!! Calculated penalty: {total_penalty}")
     print("!!! Solution after subtracting penalty: ", f"Value: {total_value - total_penalty}", sep="\n")
     print("!!! Elements used: ", best_individual)
