@@ -6,7 +6,7 @@ from datetime import datetime
 
 # TODO:
 # * Add doxygen style documentation
-# * Change random.randint() to better random generator
+# * Change random.randint() to better random generator???
 def generate_data(seed=None):
     random.seed(seed)
 
@@ -55,7 +55,7 @@ def generate_data_json(file_name=None, seed=None):
     if file_name == None:
         file_name = f"{datetime.today().strftime("%Y%m%d%H%M%S")}_random_data"
 
-    with open(f"data/{file_name}.json", 'w') as file:
+    with open(f"{file_name}.json", 'w') as file:
         json.dump(raw_data, file)
 
 def generate_data_dzn(file_name=None, seed=None):
@@ -64,7 +64,7 @@ def generate_data_dzn(file_name=None, seed=None):
     if file_name == None:
         file_name = f"{datetime.today().strftime("%Y%m%d%H%M%S")}_random_data"
 
-    with open(f"src/minizinc/{file_name}.dzn", 'w') as file:
+    with open(f"{file_name}.dzn", 'w') as file:
         file.write(f"n = {items_number};\n")
         file.write(f"capacity = {capacity};\n")
         file.write(f"values = {values};\n")
@@ -75,7 +75,12 @@ def generate_data_dzn(file_name=None, seed=None):
         file.write("penalties = [|")
         for i in range(0, categories_number):
             for j in range(0, categories_number):
-                file.write(f"{penalties[i][j]},")
+                if i == j:
+                    file.write("0,")
+                elif (j > i):
+                    file.write(f"{penalties[f"{i}{j}"]},")
+                else:
+                    file.write(f"{penalties[f"{j}{i}"]},")
             file.write("|")
         file.write("];\n")
 
