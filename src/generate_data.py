@@ -61,6 +61,9 @@ def generate_data_json(file_name=None, seed=None):
 def generate_data_dzn(file_name=None, seed=None):
     items_number, values, weights, capacity, categories_number, categories, penalties = generate_data(seed)
 
+    # Minizinc needs indices from 1..upper_bound so I am adding 1 to each category 
+    categories = [i + 1 for i in categories]
+
     if file_name == None:
         file_name = f"{datetime.today().strftime("%Y%m%d%H%M%S")}_random_data"
 
