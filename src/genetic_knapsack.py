@@ -2,7 +2,9 @@ import random
 
 from generate_data import read_data_json
 
-# TODO: Fix bug with calculating data["penalties"]
+# FIXED BUGS BUT STILL...
+# TESTING IN PROGRESS
+
 def genetic_knapsack(data, settings):
     def calculate_fitness(individual, values, weights, capacity, categories, penalties):
         total_value = sum(data["values"][i] for i in range(len(individual)) if individual[i] == 1)
@@ -19,7 +21,7 @@ def genetic_knapsack(data, settings):
                 else:
                     key = f"{data["categories"][i + 1]}{data["categories"][i]}"
     
-                total_penalty += (data["penalties"][key] / 100) * (data["values"][i] + data["values"][i+1])
+                total_penalty += (data["penalties"][key] / 100) * (data["values"][i] + data["values"][i + 1])
 
         return total_value - total_penalty
 

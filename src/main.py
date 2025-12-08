@@ -26,33 +26,34 @@ def main():
         pass
 
     if sys.argv[1] == "--generate-data":
-        tmp = input("file name> ")
-        file_name = tmp if len(tmp) else None
+        # tmp = input("file name> ")
+        # file_name = tmp if len(tmp) else None
 
-        tmp = input("seed> ")
-        seed = int(tmp) if len(tmp) else None
+        # tmp = input("seed> ")
+        # seed = int(tmp) if len(tmp) else None
+        seed = None
 
         if sys.argv[2] == "--user-provided":
-            if sys.argv[3] == "--dzn":
-                generate_data_dzn(file_name, seed, True)
-                
-            elif sys.argv[3] == "--json":
-                generate_data_json(file_name, seed, True)
-
-        # TODO: Create settings file containing min and max for generator
-        elif sys.argv[2] == "--from-file":
             if sys.argv[3] == "dzn":
-                generate_data_dzn(file_name, seed)
+                generate_data_dzn(sys.argv[4], seed, True)
                 
             elif sys.argv[3] == "json":
-                generate_data_json(file_name, seed)
+                generate_data_json(sys.argv[4], seed, True)
+
+        # TODO: Create settings file containing min and max for generator
+        elif sys.argv[2] == "--from-settings":
+            if sys.argv[3] == "dzn":
+                generate_data_dzn(sys.argv[4], seed)
+                
+            elif sys.argv[3] == "json":
+                generate_data_json(sys.argv[4], seed)
 
         else:
             print("Option was not recognized. Available options:")
             exit(1)
 
     if sys.argv[1] == "--solve":
-        print("WORK IN PROGRESS (:_-_;)\n")
+        print("WORK IN PROGRESS (ツ)")
         if sys.argv[2] == "greedy":
             print("!!! Solving using greedy algorithm")
             output_solution(*greedy_knapsack(read_data_json(sys.argv[3], True)))
