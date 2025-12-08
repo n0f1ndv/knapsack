@@ -14,8 +14,12 @@ def genetic_knapsack(data, settings):
         total_penalty = 0
         for i in range(len(individual) - 1):
             if individual[i] == 1 and individual[i + 1] == 1 and data["categories"][i] != data["categories"][i + 1]:
-                key = f"{data["categories"][i]}{data["categories"][i + 1]}"
-                total_penalty += data["penalties"].get(key, 0)
+                if data["categories"][i] < data["categories"][i + 1]:
+                    key = f"{data["categories"][i]}{data["categories"][i + 1]}"
+                else:
+                    key = f"{data["categories"][i + 1]}{data["categories"][i]}"
+    
+                total_penalty += (data["penalties"][key] / 100) * (data["values"][i] + data["values"][i+1])
 
         return total_value - total_penalty
 
@@ -56,6 +60,14 @@ def genetic_knapsack(data, settings):
     total_penalty = 0
 
     for i in range(data["items_number"] - 1):
-        if best_individual[i] == 1 and best_individual[i + 1] == 1 and data["categories"][i] != data["categories"][i + 1]:
-            key = f"{data["categories"][i]}{data["categories"][i + 1]}"
-            total_penalty += data["penalties"].get(key, 0)
+        if (best_individual[i] == 1 and best_individual[i + 1] == 1 and data["categories"][i] != data["categories"][i + 1]):
+            if data["categories"][i] < data["categories"][i + 1]:
+                key = f"{data["categories"][i]}{data["categories"][i + 1]}"
+            else:
+                key = f"{data["categories"][i + 1]}{data["categories"][i]}"
+
+            total_penalty += (data["penalties"][key] / 100) * (data["values"][i] + data["values"][i+1])
+
+    final_value = total_value - total_penalty
+
+    return total_value, total_weight, total_penalty, final_value, best_individual

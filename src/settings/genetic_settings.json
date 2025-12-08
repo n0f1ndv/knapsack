@@ -1,1 +1,1 @@
-{"population": 100, "generations": 100, "mutations": 0.01, "to_sample": 5}
+{"population": 1000, "generations": 1000, "mutations": 0.01, "to_sample": 5}
