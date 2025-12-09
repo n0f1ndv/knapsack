@@ -111,7 +111,7 @@ def read_data_json(file_name, output_data=False):
         with open(file_name, 'r') as file:
             data = json.load(file)
 
-            # Debug output for input data only
+            # DEBUG
             if (output_data):
                 print(5*"=", f"Data provided from {file_name}", 5*"=")
                 print(f"n = {data["items_number"]}")

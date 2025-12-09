@@ -35,3 +35,4 @@ How to use knap.sh:
     `./src/knap.sh --gen example5 greedy`
     To use already existing data and solve it use:
     `./src/knap.sh --use example5 genetic`
+    Notice that you only need to provide name of file from data directory.
