@@ -6,7 +6,7 @@ from generate_data import read_data_json
 # TESTING IN PROGRESS
 
 def genetic_knapsack(data, settings):
-    def calculate_fitness(individual, values, weights, capacity, categories, penalties):
+    def calculate_solution(individual, data, fitness=True):
         total_value = sum(data["values"][i] for i in range(len(individual)) if individual[i] == 1)
         total_weight = sum(data["weights"][i] for i in range(len(individual)) if individual[i] == 1)
 
@@ -15,20 +15,28 @@ def genetic_knapsack(data, settings):
 
         total_penalty = 0
         for i in range(len(individual) - 1):
-            if individual[i] == 1 and individual[i + 1] == 1 and data["categories"][i] != data["categories"][i + 1]:
-                if data["categories"][i] < data["categories"][i + 1]:
-                    key = f"{data["categories"][i]}{data["categories"][i + 1]}"
-                else:
-                    key = f"{data["categories"][i + 1]}{data["categories"][i]}"
-    
-                total_penalty += (data["penalties"][key] / 100) * (data["values"][i] + data["values"][i + 1])
+            j = 1
+            while ((individual[i] == 1) and (i + j < len(individual) - 1) and (individual[i + j] != 1)):
+                j += 1
 
-        return total_value - total_penalty
+            if individual[i] == 1 and individual[i + j] == 1 and data["categories"][i] != data["categories"][i + j]:
+                if data["categories"][i] < data["categories"][i + j]:
+                    key = f"{data["categories"][i]}{data["categories"][i + j]}"
+                else:
+                    key = f"{data["categories"][i + j]}{data["categories"][i]}"
+    
+                total_penalty += (data["penalties"][key] / 100) * (data["values"][i] + data["values"][i + j])
+
+        if (fitness):
+            return total_value - total_penalty
+        else:
+            return total_value, total_weight, total_penalty, total_value - total_penalty
+
 
     population = [[random.randint(0, 1) for _ in range(data["items_number"])] for _ in range(settings["population"])]
 
     for generation in range(settings["generations"]):
-        fitness_scores = [calculate_fitness(individual, data["values"], data["weights"], data["capacity"], data["categories"], data["penalties"]) for individual in population]
+        fitness_scores = [calculate_solution(individual, data) for individual in population]
 
         selected = []
         for _ in range(settings["population"]):
@@ -53,23 +61,8 @@ def genetic_knapsack(data, settings):
 
         population = next_population
 
-    fitness_scores = [calculate_fitness(individual, data["values"], data["weights"], data["capacity"], data["categories"], data["penalties"]) for individual in population]
+    fitness_scores = [calculate_solution(individual, data) for individual in population]
     best_index = max(range(settings["population"]), key=lambda i: fitness_scores[i])
-    best_individual = population[best_index]
-    
-    total_value = sum(data["values"][i] for i in range(data["items_number"]) if best_individual[i] == 1)
-    total_weight = sum(data["weights"][i] for i in range(data["items_number"]) if best_individual[i] == 1)
-    total_penalty = 0
+    best_individual = population[best_index]  
 
-    for i in range(data["items_number"] - 1):
-        if (best_individual[i] == 1 and best_individual[i + 1] == 1 and data["categories"][i] != data["categories"][i + 1]):
-            if data["categories"][i] < data["categories"][i + 1]:
-                key = f"{data["categories"][i]}{data["categories"][i + 1]}"
-            else:
-                key = f"{data["categories"][i + 1]}{data["categories"][i]}"
-
-            total_penalty += (data["penalties"][key] / 100) * (data["values"][i] + data["values"][i+1])
-
-    final_value = total_value - total_penalty
-
-    return total_value, total_weight, total_penalty, final_value, best_individual
+    return *calculate_solution(best_individual, data, False), best_individual
