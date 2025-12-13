@@ -59,14 +59,14 @@ def main():
 
             solution = greedy_knapsack(read_data_json(sys.argv[3], True))
             output_solution(*solution)
-            # output_solution_json(*solution)
+            output_solution_json(*solution)
 
         elif sys.argv[2] == "genetic":
             print("!!! Solving using genetic algorithm")
 
             solution = genetic_knapsack(read_data_json(sys.argv[3], True), read_data_json("src/settings/genetic_settings.json"))
             output_solution(*solution)
-            # output_solution_json(*solution)
+            output_solution_json(*solution)
 
         else:
             print("Option was not recognized. Available options:")

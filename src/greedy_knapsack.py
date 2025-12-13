@@ -1,14 +1,14 @@
 from generate_data import read_data_json
+from calculate_penalty import calculate_penalty
 
 # IMPORTANT: TESTING IN PROGRESS
 
 # Picking highest value items first
 def greedy_knapsack(data):
-    final_value = 0
-    final_weight = 0
+    total_value = 0
+    total_weight = 0
     elements_used = [0] * data["items_number"]
     used_elements_indices = []
-    penalty_value = 0
 
     values, weights, indices = zip(*sorted(zip(
         data["values"],
@@ -17,30 +17,18 @@ def greedy_knapsack(data):
     )
 
     for value, weight, index in zip(values, weights, indices):
-        final_value += value
-        final_weight += weight
+        total_value += value
+        total_weight += weight
         elements_used[index] = 1
         used_elements_indices.append(index)
 
-        if (final_weight > data["capacity"]):
-            final_weight -= weight
-            final_value -= value
+        if (total_weight > data["capacity"]):
+            total_weight -= weight
+            total_value -= value
             elements_used[index] = 0
             used_elements_indices.remove(index)
             break
 
-    for i in range(len(used_elements_indices) - 1):
-        current_pos = used_elements_indices[i]
-        next_pos = used_elements_indices[i+1]
+    total_penalty = calculate_penalty(data, used_elements_indices)
 
-        if (data["categories"][current_pos] == data["categories"][next_pos]):
-            continue
-
-        if (next_pos > current_pos):
-            key = f"{data["categories"][current_pos]}{data["categories"][next_pos]}"
-        else:
-            key = f"{data["categories"][next_pos]}{data["categories"][current_pos]}"
-        
-        penalty_value += (data["penalties"][key] / 100) * (data["values"][current_pos] + data["values"][next_pos])
-
-    return final_value, final_weight, penalty_value, final_value - penalty_value, elements_used
+    return total_value, total_weight, total_penalty, total_value - total_penalty, elements_used

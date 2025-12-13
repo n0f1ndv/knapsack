@@ -1,6 +1,7 @@
 import random
 
 from generate_data import read_data_json
+from calculate_penalty import calculate_penalty
 
 # FIXED BUGS BUT STILL...
 # TESTING IN PROGRESS
@@ -13,19 +14,12 @@ def genetic_knapsack(data, settings):
         if total_weight > data["capacity"]:
             return 0
 
-        total_penalty = 0
-        for i in range(len(individual) - 1):
-            j = 1
-            while ((individual[i] == 1) and (i + j < len(individual) - 1) and (individual[i + j] != 1)):
-                j += 1
+        used_elements_indices = []
+        for i in range(len(individual)):
+            if (individual[i] == 1):
+                used_elements_indices.append(i)
 
-            if individual[i] == 1 and individual[i + j] == 1 and data["categories"][i] != data["categories"][i + j]:
-                if data["categories"][i] < data["categories"][i + j]:
-                    key = f"{data["categories"][i]}{data["categories"][i + j]}"
-                else:
-                    key = f"{data["categories"][i + j]}{data["categories"][i]}"
-    
-                total_penalty += (data["penalties"][key] / 100) * (data["values"][i] + data["values"][i + j])
+        total_penalty = calculate_penalty(data, used_elements_indices)
 
         if (fitness):
             return total_value - total_penalty
