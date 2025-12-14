@@ -29,6 +29,7 @@ def greedy_knapsack(data, minimize=False):
             elements_used[index] = 0
             used_elements_indices.remove(index)
             break
+        
     if (minimize):
         used_elements_indices = minimize_penalty(data, used_elements_indices)
 

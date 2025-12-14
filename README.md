@@ -11,7 +11,7 @@ This command generates data for given problem and writes it in json format:
     When prompted about file name DO NOT enter extension. Only file name, you may leave name empty and then 
     program will choose name after current date.
     To generate a file you only need to provide the name, without extension. It is saved in data directory.
-    `python3 src/main.py --generate-data json example1`
+    `python3 src/main.py --generate-data json example1 `
     
 This command runs greedy algorithm to solve instance of problem without rearraging:
     `python3 src/main.py --solve greedy data/example1.json --dont-minimize`

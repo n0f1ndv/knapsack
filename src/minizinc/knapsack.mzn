@@ -1,5 +1,5 @@
 int: n;
-int: C;
+int: capacity; % C
 array[1..n] of int: values; % v
 array[1..n] of int: weights; % w
 array[1..n] of int: categories; % c
@@ -9,7 +9,7 @@ array[1..m, 1..m] of int: penalties; % l
 
 array[1..n] of var 0..1: x;
 
-constraint sum(i in 1..n)(weights[i] * x[i]) <= C;
+constraint sum(i in 1..n)(weights[i] * x[i]) <= capacity;
 
 var int: total_value = sum(i in 1..n)(values[i] * x[i]);
 

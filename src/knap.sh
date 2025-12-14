@@ -2,7 +2,6 @@
 
 file_path="data/$2.json"
 
-# ./src/knap.sh --gen example4 genetic
 if [ "$1" == "--gen" ]; then
     echo "*** Generating file with data for instance of a problem" 
     python3 src/main.py --generate-data --from-settings json $2
