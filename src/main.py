@@ -1,4 +1,5 @@
 import sys
+import time
 
 from generate_data import *
 from greedy_knapsack import *
@@ -53,18 +54,37 @@ def main():
             exit(1)
 
     if sys.argv[1] == "--solve":
-        print("WORK IN PROGRESS (ツ)")
         if sys.argv[2] == "greedy":
             print("!!! Solving using greedy algorithm")
 
-            solution = greedy_knapsack(read_data_json(sys.argv[3], True))
+            if (sys.argv[3]) == "--minimize":
+                minimize = True
+            elif (sys.argv[3]) == "--dont-minimize":
+                minimize = False
+
+            start = time.time()
+            solution = greedy_knapsack(read_data_json(sys.argv[4], True), minimize)
+            end = time.time()
+
+            print(f"### Execution time: {(1000000 * (end - start)):.3f} ms")
+
             output_solution(*solution)
             output_solution_json(*solution)
 
         elif sys.argv[2] == "genetic":
             print("!!! Solving using genetic algorithm")
 
-            solution = genetic_knapsack(read_data_json(sys.argv[3], True), read_data_json("src/settings/genetic_settings.json"))
+            if (sys.argv[3]) == "--minimize":
+                minimize = True
+            elif (sys.argv[3]) == "--dont-minimize":
+                minimize = False
+
+            start = time.time()
+            solution = genetic_knapsack(read_data_json(sys.argv[4], True), read_data_json("src/settings/genetic_settings.json"), minimize)
+            end = time.time()
+
+            print(f"### Execution time: {1000000 * (end - start):.3f} ms")
+
             output_solution(*solution)
             output_solution_json(*solution)
 

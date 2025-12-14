@@ -10,11 +10,11 @@ if [ "$1" == "--gen" ]; then
     echo "*** Relative path to generated file: $file_path"
 
     echo "*** Running $3 algorithm to solve the problem"
-    python3 src/main.py --solve $3 "$file_path"
+    python3 src/main.py --solve $3 $4 "$file_path"
 
 elif [ "$1" == "--use" ]; then
     echo "*** Using file: $file_path"
 
     echo "*** Running $3 algorithm to solve the problem"
-    python3 src/main.py --solve $3 "$file_path"  
+    python3 src/main.py --solve $3 $4 "$file_path"  
 fi

@@ -2,7 +2,7 @@
     "items_number": [5, 10],
     "values": [10, 20],
     "weights": [10, 20],
-    "capacity": [80, 120],
+    "capacity": [60, 100],
     "categories_number": [3, 5],
     "penalties": [1, 50]
 }

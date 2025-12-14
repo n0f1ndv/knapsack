@@ -8,7 +8,7 @@ def calculate_penalty(data, used_elements_indices):
         if (data["categories"][current_pos] == data["categories"][next_pos]):
             continue
 
-        if (next_pos > current_pos):
+        if (data["categories"][next_pos] > data["categories"][current_pos]):
             key = f"{data["categories"][current_pos]}{data["categories"][next_pos]}"
         else:
             key = f"{data["categories"][next_pos]}{data["categories"][current_pos]}"
