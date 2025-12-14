@@ -4,8 +4,6 @@ from datetime import datetime
 
 # IMPORTANT: TESTING IN PROGRESS
 
-# TODO:
-# * Add doxygen style documentation
 def generate_data(seed=None, user_provided=False):
     random.seed(seed)
 
