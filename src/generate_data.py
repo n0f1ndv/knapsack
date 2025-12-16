@@ -86,13 +86,13 @@ def generate_data_dzn(file_name=None, seed=None):
 
     with open(f"data/{file_name}.dzn", 'w') as file:
         file.write(f"n = {items_number};\n")
-        file.write(f"capacity = {capacity};\n")
-        file.write(f"values = {values};\n")
-        file.write(f"weights = {weights};\n")
-        file.write(f"categories = {categories};\n")
+        file.write(f"C = {capacity};\n")
+        file.write(f"v = {values};\n")
+        file.write(f"w = {weights};\n")
+        file.write(f"c = {categories};\n")
         file.write(f"m = {categories_number};\n")
 
-        file.write("penalties = [|")
+        file.write("l = [|")
         for i in range(0, categories_number):
             for j in range(0, categories_number):
                 if i == j:

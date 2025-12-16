@@ -50,7 +50,7 @@ def main():
             print(f"### Execution time: {(1000000 * (end - start)):.3f} ms")
 
             output_solution(*solution)
-            # output_solution_json(*solution)
+            output_solution_json(*solution)
 
         elif sys.argv[2] == "genetic":
             print("!!! Solving using genetic algorithm")
@@ -67,7 +67,7 @@ def main():
             print(f"### Execution time: {1000000 * (end - start):.3f} ms")
 
             output_solution(*solution)
-            # output_solution_json(*solution)
+            output_solution_json(*solution)
 
         else:
             print("Option was not recognized.")

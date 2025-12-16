@@ -26,10 +26,10 @@ Make this script executable:
     `chmod +x src/minizinc/brute.sh`
     
 Generate data using python script with dzn parameter:
-    `python src/main.py --generate-data dzn`
+    `python src/main.py --generate-data --from-settings dzn example2`
     
 Run this script with path to chosen data file:
-    `./src/minizinc/brute.sh data/example0.dzn`
+    `./src/minizinc/brute.sh data/example2.dzn`
 
 How to use knap.sh:
 Make this script executable:

@@ -7,6 +7,8 @@ from minimize_penalty import minimize_penalty
 # FIXED BUGS BUT STILL...
 # TESTING IN PROGRESS
 
+# TODO:
+# Time limit
 def genetic_knapsack(data, settings, minimize=False):
     def calculate_solution(individual, data, fitness=True, minimize=False):
         total_value = sum(data["values"][i] for i in range(len(individual)) if individual[i] == 1)

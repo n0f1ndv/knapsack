@@ -3,6 +3,6 @@
     "values": [10, 20],
     "weights": [10, 20],
     "capacity": [60, 100],
-    "categories_number": [3, 5],
+    "categories_number": [5, 8],
     "penalties": [1, 50]
 }

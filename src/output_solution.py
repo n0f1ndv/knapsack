@@ -8,7 +8,7 @@ def output_solution(value, weight, penalty_value, final_value, elements_used):
     print("!!! Elements used:", f"{elements_used}", sep="\n")
 
 def output_solution_json(value, weight, penalty_value, final_value, elements_used):
-    file_name = f"data/sol_{datetime.today().strftime("%Y%m%d%H%M%S")}.json"
+    file_name = f"solutions/sol_{datetime.today().strftime("%Y%m%d%H%M%S")}.json"
     print(f"!!! Saving solution in {file_name}")
 
     data = {}
