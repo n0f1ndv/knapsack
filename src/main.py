@@ -47,10 +47,14 @@ def main():
             solution = greedy_knapsack(read_data_json(sys.argv[4], True), minimize)
             end = time.time()
 
-            print(f"### Execution time: {(1000000 * (end - start)):.3f} ms")
+            time_elapsed = 1000000 * (end - start)
+            print(f"### Execution time: {time_elapsed:.3f} ms")
 
-            output_solution(*solution)
-            output_solution_json(*solution)
+            if (len(sys.argv) == 5):
+                # output_solution(*solution)
+                output_solution_json(*solution, time_elapsed)
+            else:
+                output_solution_json(*solution, time_elapsed, sys.argv[5])
 
         elif sys.argv[2] == "genetic":
             print("!!! Solving using genetic algorithm")
@@ -64,10 +68,14 @@ def main():
             solution = genetic_knapsack(read_data_json(sys.argv[4], True), read_data_json("src/settings/genetic_settings.json"), minimize)
             end = time.time()
 
-            print(f"### Execution time: {1000000 * (end - start):.3f} ms")
+            time_elapsed = 1000000 * (end - start)
+            print(f"### Execution time: {time_elapsed:.3f} ms")
 
-            output_solution(*solution)
-            output_solution_json(*solution)
+            if (len(sys.argv) == 5):
+                # output_solution(*solution)
+                output_solution_json(*solution, time_elapsed)
+            else:
+                output_solution_json(*solution, time_elapsed, sys.argv[5])
 
         else:
             print("Option was not recognized.")

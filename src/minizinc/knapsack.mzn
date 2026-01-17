@@ -35,8 +35,9 @@ var float: final_value = total_value - total_penalty;
 
 solve maximize final_value;
 
-output ["Elements used: ", show(x), 
-    "\n", "Value: ", show(total_value),
-    "\n", "Weight: ", show(sum(i in 1..n)(w[i]*x[i])),
-    "\n", "Penalty: ", show(total_penalty), 
-    "\n", "Final value: ", show(final_value), "\n"];
+output ["value", show(total_value),
+    "weight", show(sum(i in 1..n)(w[i]*x[i])),
+    "penalty value", show(total_penalty), 
+    "final_value", show(final_value),
+    "elements_used", show(x)
+];
