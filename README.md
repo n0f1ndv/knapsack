@@ -39,5 +39,12 @@ To use already existing data and solve it use:
 To run test for algorithm use:
     `./src/knap.sh --test 20 greedy --minimize`
 This will run greedy algorithm with --minimize option 20 times for generated data 
+
+To run time test for genetic algorithm use:
+    `python3 src/test.py --time-test`
+Then you will be prompted to give start, end and step. Parameters used to generate list of generations.
+
+To plot results of test use: 
+    `python3 src/test.py --plot test_results/time_test.csv`
     
 Notice that to generate you only need to provide name of file from 'data' directory.

@@ -1,1 +1,0 @@
-{"items_number": 5, "values": [11, 10, 14, 12, 17], "weights": [3, 2, 2, 4, 1], "capacity": 16, "categories_number": 4, "categories": [2, 2, 2, 3, 1], "penalties": {"01": 16, "02": 11, "03": 13, "12": 17, "13": 10, "23": 20}}

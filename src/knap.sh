@@ -5,7 +5,13 @@ if [ "$1" == "--test" ]; then
     for ((  i=1 ; i<=$2 ; i++)); do
         echo "*** Test in progress: $i/$2"
         python3 src/main.py --generate-data --from-settings json "test/test_$i"
-        python3 src/main.py --solve $3 $4 "data/test/test_$i.json" "solution_$3$4_$i"
+        python3 src/main.py --solve $3 $4 "data/test/test_$i.json" "test_$3$4_$i"
+    done
+elif [ "$1" == "--time-test" ]; then
+    python3 src/main.py --generate-data --from-settings json "time_test/test"
+    for i in {50..1000..50}; do
+        echo "*** Test in progress: $i ms"
+        python3 src/main.py --solve genetic $3 $2 $i "time_test_$4_$i"
     done
 elif [ "$3" == "genetic" ] || [ "$3" == "greedy" ]; then
     file_path="data/$2.json"

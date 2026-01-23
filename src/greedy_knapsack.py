@@ -2,9 +2,6 @@ from generate_data import read_data_json
 from calculate_penalty import calculate_penalty
 from minimize_penalty import minimize_penalty
 
-# IMPORTANT: TESTING IN PROGRESS
-
-# Picking highest value items first
 def greedy_knapsack(data, minimize=False):
     total_value = 0
     total_weight = 0
