@@ -2,13 +2,16 @@ import sys
 import csv
 import json
 import time
-import matplotlib.pyplot as plt
+import psutil
+import os
 from datetime import datetime
 
 from genetic_knapsack import genetic_knapsack
-from generate_data import read_data_json
+from greedy_knapsack import greedy_knapsack
+from generate_data import *
 
-TEST_DATA_PATH = "data/example8.json"
+SEED = 95674
+TEST_DATA_PATH = "data/example10.json"
 SETTINGS_PATH = "src/settings/genetic_settings.json"
 
 def plot(path_to_csv_file):
@@ -17,20 +20,13 @@ def plot(path_to_csv_file):
 
     with open(path_to_csv_file, "r", newline="") as csv_file:
         lines = csv.reader(csv_file, delimiter=",")
-        for line in lines:
-            x.append(line[0])
-            y.append(line[1])
+        for i, line in enumerate(lines):
+            if i > 0:
+                x.append(float(line[0]))
+                y.append(float(line[1]))
 
-    plt.plot(x, y, color = "r", linestyle = "dashed",
-        marker = "o",label = "Time test")
-
-    plt.xticks(rotation = 25)
-    plt.xlabel("Time")
-    plt.ylabel("Solution")
-    plt.title("Time test", fontsize = 20)
-    plt.grid()
-    plt.legend()
-    plt.show()
+    print(x)
+    print(y)
 
 def main():
     if len(sys.argv) == 1:
@@ -40,13 +36,14 @@ def main():
     if sys.argv[1] == "--time-test":
         data = read_data_json(TEST_DATA_PATH)
         settings = read_data_json(SETTINGS_PATH)
-    
+
         generations_number = range(int(input("start> ")), int(input("end> ")), int(input("step> ")))
     
         results = []
         results.append(["time", "solution"])
     
         for gen in generations_number:
+            print(f"Test in progress {gen}")
             settings["generations"] = gen
     
             start = time.time()
@@ -60,6 +57,56 @@ def main():
         with open(f"test_results/time_test{datetime.today().strftime("%Y%m%d%H%M%S")}.csv", "w", newline="") as csv_file:
             writer = csv.writer(csv_file)
             writer.writerows(results)
+
+    elif sys.argv[1] == "--quality-test":
+        generator_settings = read_data_json("src/settings/generator_settings.json")
+
+        results = []
+        results.append(["greedy", "genetic"])
+
+        for i in range(2, 9):
+            print(f"Test in progress {i}")
+            generator_settings["items_number"] = [2**i, 2**i]
+
+            to_json = json.dumps(generator_settings)
+            with open("src/settings/generator_settings.json", "w") as json_file:
+                json_file.write(to_json)
+
+            generate_data_dzn(f"test/test_{2**i}", SEED)
+            generate_data_json(f"test/test_{2**i}", SEED)
+
+            solution_greedy = greedy_knapsack(read_data_json(f"data/test/test_{2**i}.json"), minimize=False)
+            solution_genetic = genetic_knapsack(read_data_json(f"data/test/test_{2**i}.json"), read_data_json(SETTINGS_PATH), minimize=False)
+
+            results.append([solution_greedy[3], solution_genetic[3]])
+
+        with open(f"test_results/quality_test{datetime.today().strftime("%Y%m%d%H%M%S")}.csv", "w", newline="") as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerows(results)
+
+    elif sys.argv[1] == "--mem-test":
+        generator_settings = read_data_json("src/settings/generator_settings.json")
+
+        results = []
+        results.append(["greedy", "genetic"])
+
+        for i in range(2, 9):
+            print(f"Test in progress {i}")
+            generator_settings["items_number"] = [2**i, 2**i]
+
+            to_json = json.dumps(generator_settings)
+            with open("src/settings/generator_settings.json", "w") as json_file:
+                json_file.write(to_json)
+
+            generate_data_dzn(f"test/test_{2**i}", SEED)
+            generate_data_json(f"test/test_{2**i}", SEED)
+
+            if sys.argv[2] == "genetic":
+                pass
+            elif sys.argv[2] == "greedy":
+                pass
+            else:
+                print("Option not recognised")
 
     elif sys.argv[1] == "--plot":
         plot(sys.argv[2])

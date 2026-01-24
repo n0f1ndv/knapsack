@@ -15,7 +15,7 @@ This command generates data for given problem and writes it in json format:
     program will choose name after current date.
     To generate a file you only need to provide the name, without extension. It is saved in data directory.
     Last parameter is seed, if you don't need to provide it.
-    `python3 src/main.py --generate-data --from-settings json example1 123`
+    `python3 src/main.py --generate-data --from-settings json example10 52346`
 
     `python src/main.py --generate-data --from-settings dzn example2 123`
 

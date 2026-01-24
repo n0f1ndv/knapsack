@@ -1,27 +1,19 @@
-import random
-import time
-
-from generate_data import read_data_json
-from calculate_penalty import calculate_penalty
-from minimize_penalty import minimize_penalty
-
-
 def genetic_knapsack(data, settings, minimize=False):
     def calculate_solution(individual, data, fitness, minimize=False):
         total_value = sum(data["values"][i] for i in range(len(individual)) if individual[i] == 1)
         total_weight = sum(data["weights"][i] for i in range(len(individual)) if individual[i] == 1)
 
-        if fitness is True and total_weight > data["capacity"]:
+        if total_weight > data["capacity"]:
             return 0
 
         used_elements_indices = [i for i in range(len(individual)) if individual[i] == 1]
 
-        if (minimize and len(used_elements_indices)):
+        if minimize and used_elements_indices:
             used_elements_indices = minimize_penalty(data, used_elements_indices)
 
         total_penalty = calculate_penalty(data, used_elements_indices)
 
-        if (fitness):
+        if fitness:
             return total_value - total_penalty
         else:
             return total_value, total_weight, total_penalty, total_value - total_penalty
@@ -56,6 +48,9 @@ def genetic_knapsack(data, settings, minimize=False):
 
     fitness_scores = [calculate_solution(individual, data, True, minimize) for individual in population]
     best_index = max(range(settings["population"]), key=lambda i: fitness_scores[i])
-    best_individual = population[best_index]
+    
+    while calculate_solution(population[best_index], data, True, minimize) == 0:
+        best_index = random.randint(0, settings["population"] - 1)
 
+    best_individual = population[best_index]
     return *calculate_solution(best_individual, data, False, minimize), best_individual

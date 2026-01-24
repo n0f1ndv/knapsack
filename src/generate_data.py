@@ -2,8 +2,6 @@ import random
 import json
 from datetime import datetime
 
-# IMPORTANT: TESTING IN PROGRESS
-
 def generate_data(seed=None, user_provided=False):
     random.seed(seed)
 
@@ -13,13 +11,13 @@ def generate_data(seed=None, user_provided=False):
         items_number = random.randint(min_num, max_num)
 
         min_val, max_val = list(map(int, input("values> ").split()))
-        values = [random.randint(min_val, max_val) for i in range(items_number)]
+        values = [random.uniform(min_val, max_val) for i in range(items_number)]
     
         min_wei, max_wei = list(map(int, input("weights> ").split()))
-        weights = [random.randint(min_wei, max_wei) for i in range(items_number)]
+        weights = [random.uniform(min_wei, max_wei) for i in range(items_number)]
 
         min_cap, max_cap = list(map(int, input("capacity> ").split()))
-        capacity = random.randint(min_cap, max_cap)
+        capacity = random.uniform(min_cap, max_cap)
 
         min_cat_num, max_cat_num = list(map(int, input("categories_number> ").split()))
         categories_number = random.randint(min_cat_num, max_cat_num)
@@ -39,9 +37,9 @@ def generate_data(seed=None, user_provided=False):
         settings = read_data_json("src/settings/generator_settings.json")
 
         items_number = random.randint(*settings["items_number"])
-        values = [random.randint(*settings["values"]) for i in range(items_number)]
-        weights = [random.randint(*settings["weights"]) for i in range(items_number)]
-        capacity = random.randint(*settings["capacity"])
+        values = [random.uniform(*settings["values"]) for i in range(items_number)]
+        weights = [random.uniform(*settings["weights"]) for i in range(items_number)]
+        capacity = random.uniform(*settings["capacity"])
 
         categories_number = random.randint(*settings["categories_number"])
         categories = [random.randint(0, categories_number - 1) for i in range(items_number)]

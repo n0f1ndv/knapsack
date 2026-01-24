@@ -2,3 +2,5 @@ solutions/
 venv/
 test_results/
 data/
+src/settings
+src/__pycache__
