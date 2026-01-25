@@ -1,3 +1,8 @@
+"""
+@file main.py
+@brief Project that provides solver for Binary knapsack problem and generator for input data
+"""
+
 import sys
 import time
 
@@ -51,7 +56,6 @@ def main():
             print(f"### Execution time: {time_elapsed:.3f} ms")
 
             if (len(sys.argv) == 5):
-                # output_solution(*solution)
                 output_solution_json(*solution, time_elapsed)
             else:
                 output_solution_json(*solution, time_elapsed, sys.argv[5])
@@ -71,7 +75,6 @@ def main():
             time_elapsed = 1000 * (end - start)
             print(f"### Execution time: {time_elapsed:.3f} s")
 
-            # output_solution(*solution)
             output_solution_json(*solution, time_elapsed)
 
         else:

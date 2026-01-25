@@ -1,8 +1,18 @@
+"""
+@file generate_data.py
+@brief Program that generates an instance of a problem
+"""
+
 import random
 import json
 from datetime import datetime
 
 def generate_data(seed=None, user_provided=False):
+    """
+    @brief Core of a generator. It allows user provided data and reading it from settings
+    @param seed (int): Used to reproduce conditions of generations
+    @param user_provided (bool): Decides whether settings are read from file or from standard input
+    """ 
     random.seed(seed)
 
     if (user_provided):
@@ -55,6 +65,12 @@ def generate_data(seed=None, user_provided=False):
     return items_number, values, weights, capacity, categories_number, categories, penalties
 
 def generate_data_json(file_name=None, seed=None, user_provided=False):
+    """
+    @brief Writes generated data into json file
+    @param file_name (string): Name of a file in which data will be saved
+    @param seed (int): Used to reproduce conditions of generations
+    @param user_provided (bool): Decides whether settings are read from file or from standard input
+    """
     raw_data = {}
 
     items_number, values, weights, capacity, categories_number, categories, penalties = generate_data(seed, user_provided)
@@ -74,9 +90,13 @@ def generate_data_json(file_name=None, seed=None, user_provided=False):
         json.dump(raw_data, file)
 
 def generate_data_dzn(file_name=None, seed=None):
+    """
+    @brief Writes generated data into dzn file
+    @param file_name (string): Name of a file in which data will be saved
+    @param seed (int): Used to reproduce conditions of generations
+    """
     items_number, values, weights, capacity, categories_number, categories, penalties = generate_data(seed)
 
-    # Minizinc needs indices from 1..upper_bound so I am adding 1 to each category 
     categories = [i + 1 for i in categories]
 
     if file_name == None:
@@ -103,11 +123,15 @@ def generate_data_dzn(file_name=None, seed=None):
         file.write("];\n")
 
 def read_data_json(file_name, output_data=False):
+    """
+    @brief Helps with reading data from json file
+    @param file_name (string): File that is being read
+    @param output_data (bool): Decides whether data is send to standard output. Used for debug
+    """
     try:
         with open(file_name, 'r') as file:
             data = json.load(file)
 
-            # DEBUG
             if (output_data):
                 print(5*"=", f"Data provided from {file_name}", 5*"=")
                 print(f"n = {data["items_number"]}")

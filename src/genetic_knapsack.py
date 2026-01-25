@@ -1,5 +1,29 @@
+"""
+@file genetic_knapsack.py
+@brief Provides genetic algorithm for an instance of a problem
+"""
+import random
+import time
+
+from generate_data import read_data_json
+from calculate_penalty import calculate_penalty
+from minimize_penalty import minimize_penalty
+
 def genetic_knapsack(data, settings, minimize=False):
+    """
+    @brief Genetic algorithm 
+    @param data (dict): Instance of a problem read from json
+    @param settings (dict): Settings of genetic algorithm read from json
+    @param minimize (bool): Decides whether to call minimize_penalty()
+    """
     def calculate_solution(individual, data, fitness, minimize=False):
+        """
+        @brief Helper function that calculates final solution or fitness of an individual
+        @param individual (list): Binary list of used elements
+        @param data (dict): Instance of a problem read from json
+        @param fitness (bool): Decides upon return type. True for calculating fitness, False for final solution
+        @param minimize (bool): Decides whether to call minimize_penalty()
+        """
         total_value = sum(data["values"][i] for i in range(len(individual)) if individual[i] == 1)
         total_weight = sum(data["weights"][i] for i in range(len(individual)) if individual[i] == 1)
 
@@ -53,4 +77,5 @@ def genetic_knapsack(data, settings, minimize=False):
         best_index = random.randint(0, settings["population"] - 1)
 
     best_individual = population[best_index]
+
     return *calculate_solution(best_individual, data, False, minimize), best_individual

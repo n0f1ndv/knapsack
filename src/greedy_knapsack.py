@@ -1,8 +1,18 @@
+"""
+@file greedy_knapsack.py
+@brief Provides greedy algorithm for an instance of a problem
+"""
+
 from generate_data import read_data_json
 from calculate_penalty import calculate_penalty
 from minimize_penalty import minimize_penalty
 
 def greedy_knapsack(data, minimize=False):
+    """
+    @brief Greedy algorithm that picks items by highest value
+    @param data (dict): Instance of a problem read from json
+    @param minimize (bool): Decides whether to call minimize_penalty()
+    """
     total_value = 0
     total_weight = 0
     elements_used = [0] * data["items_number"]

@@ -1,3 +1,8 @@
+"""
+@file test.py
+@brief Allows time test, quality test and RAM test also provides output of csv data as a lsit to the standard output
+"""
+
 import sys
 import csv
 import json

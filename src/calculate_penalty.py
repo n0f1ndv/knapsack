@@ -1,4 +1,14 @@
+"""
+@file calculate_penalty.py
+@brief Module that provides function that calculates penalty
+"""
+
 def calculate_penalty(data, used_elements_indices):
+    """
+    @brief Calculates penalty on adjacent items
+    @param data (dict): Data of an instance
+    @param used_elements_indices (list): Contains a proper order of elements in knapsack
+    """
     penalty_value = 0
 
     for i in range(len(used_elements_indices) - 1):
