@@ -1,0 +1,31 @@
+\chapter{Binary Knapsack Problem with categories }
+\hypertarget{md_README}{}\label{md_README}\index{Binary Knapsack Problem with categories@{Binary Knapsack Problem with categories}}
+\label{md_README_autotoc_md0}%
+\Hypertarget{md_README_autotoc_md0}%
+\hypertarget{md_README_autotoc_md1}{}\doxysection{\texorpdfstring{Instalation:\+}{Instalation:\+}}\label{md_README_autotoc_md1}
+To get this repository please use:\+ {\ttfamily git clone \href{https://github.com/n0f1ndv/knapsack.git}{\texttt{https:\+/\+/\+github.\+com/\+n0f1ndv/\+knapsack.\+git}}}
+
+Right now current work is on dev:\+ {\ttfamily git switch dev}
+
+Make this script executable:\+ {\ttfamily chmod +x src/\+knap.\+sh}\hypertarget{md_README_autotoc_md2}{}\doxysection{\texorpdfstring{Example usage:\+}{Example usage:\+}}\label{md_README_autotoc_md2}
+This command generates data for given problem and writes it in json format:\+ When prompted about file name DO NOT enter extension. Only file name, you may leave name empty and then program will choose name after current date. To generate a file you only need to provide the name, without extension. It is saved in data directory. Last parameter is seed, if you don\textquotesingle{}t need to provide it. {\ttfamily python3 src/\+main.\+py -\/-\/generate-\/data -\/-\/from-\/settings json example10 52346}
+
+{\ttfamily python src/\+main.\+py -\/-\/generate-\/data -\/-\/from-\/settings dzn example2 123}
+
+This command runs brute force algorithm in Minizinc to solve instance of problem:\+ {\ttfamily ./\+src/\+knap.sh -\/-\/use example2 brute}
+
+This command runs greedy algorithm to solve instance of problem without rearraging:\+ {\ttfamily python3 src/\+main.\+py -\/-\/solve greedy -\/-\/dont-\/minimize data/\+example1.\+json}
+
+This command runs genetic algorithm to solve instance of problem with rearranging elements in backpack after finding solution:\+ {\ttfamily python3 src/\+main.\+py -\/-\/solve genetic -\/-\/minimize data/\+example1.\+json} As you can see you need to provide relative path to file with data to solve it.
+
+How to use knap.\+sh:\+ To generate new data and solve it using algorithm:\+ {\ttfamily ./\+src/\+knap.sh -\/-\/gen example5 greedy -\/-\/minimize}
+
+To use already existing data and solve it use:\+ {\ttfamily ./\+src/\+knap.sh -\/-\/use example5 genetic -\/-\/dont-\/minimize}
+
+To run test for algorithm use:\+ {\ttfamily ./\+src/\+knap.sh -\/-\/\doxylink{namespacetest}{test} 20 greedy -\/-\/minimize} This will run greedy algorithm with --minimize option 20 times for generated data
+
+To run time test for genetic algorithm use:\+ {\ttfamily python3 src/\+test.\+py -\/-\/time-\/test} Then you will be prompted to give start, end and step. Parameters used to generate list of generations.
+
+To plot results of test use:\+ {\ttfamily python3 src/\+test.\+py -\/-\/plot test\+\_\+results/\+time\+\_\+test.\+csv}
+
+Notice that to generate you only need to provide name of file from \textquotesingle{}data\textquotesingle{} directory. 

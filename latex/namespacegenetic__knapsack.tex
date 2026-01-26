@@ -1,0 +1,42 @@
+\doxysection{genetic\+\_\+knapsack Namespace Reference}
+\hypertarget{namespacegenetic__knapsack}{}\label{namespacegenetic__knapsack}\index{genetic\_knapsack@{genetic\_knapsack}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacegenetic__knapsack_aede08300b262242e80da3d3bfb39d5ff}{greedy\+\_\+repair}} (individual, data)
+\item 
+\doxymbox{\hyperlink{namespacegenetic__knapsack_a2709a513feff0af1869eea772aa48c29}{genetic\+\_\+knapsack}} (data, settings, minimize=False)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@file genetic_knapsack.py
+@brief Provides genetic algorithm for an instance of a problem (with greedy repair)
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacegenetic__knapsack_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacegenetic__knapsack_a2709a513feff0af1869eea772aa48c29}\index{genetic\_knapsack@{genetic\_knapsack}!genetic\_knapsack@{genetic\_knapsack}}
+\index{genetic\_knapsack@{genetic\_knapsack}!genetic\_knapsack@{genetic\_knapsack}}
+\doxysubsubsection{\texorpdfstring{genetic\_knapsack()}{genetic\_knapsack()}}
+{\footnotesize\ttfamily \label{namespacegenetic__knapsack_a2709a513feff0af1869eea772aa48c29} 
+genetic\+\_\+knapsack.\+genetic\+\_\+knapsack (\begin{DoxyParamCaption}\item[{}]{data}{, }\item[{}]{settings}{, }\item[{}]{minimize}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Genetic algorithm 
+@param data (dict): Instance of a problem read from json
+@param settings (dict): Settings of genetic algorithm read from json
+@param minimize (bool): Decides whether to call minimize_penalty()
+\end{DoxyVerb}
+ \Hypertarget{namespacegenetic__knapsack_aede08300b262242e80da3d3bfb39d5ff}\index{genetic\_knapsack@{genetic\_knapsack}!greedy\_repair@{greedy\_repair}}
+\index{greedy\_repair@{greedy\_repair}!genetic\_knapsack@{genetic\_knapsack}}
+\doxysubsubsection{\texorpdfstring{greedy\_repair()}{greedy\_repair()}}
+{\footnotesize\ttfamily \label{namespacegenetic__knapsack_aede08300b262242e80da3d3bfb39d5ff} 
+genetic\+\_\+knapsack.\+greedy\+\_\+repair (\begin{DoxyParamCaption}\item[{}]{individual}{, }\item[{}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Repair binary individual to be feasible by removing items until weight is less than capacity.
+@param individual (list): Binary list of used elements
+@param data (dict): Instance of a problem read from json
+\end{DoxyVerb}
+ 

@@ -1,0 +1,66 @@
+\doxysection{generate\+\_\+data Namespace Reference}
+\hypertarget{namespacegenerate__data}{}\label{namespacegenerate__data}\index{generate\_data@{generate\_data}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacegenerate__data_ade63f3cc35a89253f840a2cfca0e361f}{generate\+\_\+data}} (seed=None, user\+\_\+provided=False)
+\item 
+\doxymbox{\hyperlink{namespacegenerate__data_a09c9fc33e08e873bb3eb79635086a3f2}{generate\+\_\+data\+\_\+json}} (file\+\_\+name=None, seed=None, user\+\_\+provided=False)
+\item 
+\doxymbox{\hyperlink{namespacegenerate__data_a72ae8fd035d61dbe0cbdce9498d7a156}{generate\+\_\+data\+\_\+dzn}} (file\+\_\+name=None, seed=None)
+\item 
+\doxymbox{\hyperlink{namespacegenerate__data_a83cb5074c6d7362686733c07ba41e594}{read\+\_\+data\+\_\+json}} (file\+\_\+name, output\+\_\+data=False)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@file generate_data.py
+@brief Program that generates an instance of a problem
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacegenerate__data_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacegenerate__data_ade63f3cc35a89253f840a2cfca0e361f}\index{generate\_data@{generate\_data}!generate\_data@{generate\_data}}
+\index{generate\_data@{generate\_data}!generate\_data@{generate\_data}}
+\doxysubsubsection{\texorpdfstring{generate\_data()}{generate\_data()}}
+{\footnotesize\ttfamily \label{namespacegenerate__data_ade63f3cc35a89253f840a2cfca0e361f} 
+generate\+\_\+data.\+generate\+\_\+data (\begin{DoxyParamCaption}\item[{}]{seed}{ = {\ttfamily None}, }\item[{}]{user\+\_\+provided}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Core of a generator. It allows user provided data and reading it from settings
+@param seed (int): Used to reproduce conditions of generations
+@param user_provided (bool): Decides whether settings are read from file or from standard input
+\end{DoxyVerb}
+ \Hypertarget{namespacegenerate__data_a72ae8fd035d61dbe0cbdce9498d7a156}\index{generate\_data@{generate\_data}!generate\_data\_dzn@{generate\_data\_dzn}}
+\index{generate\_data\_dzn@{generate\_data\_dzn}!generate\_data@{generate\_data}}
+\doxysubsubsection{\texorpdfstring{generate\_data\_dzn()}{generate\_data\_dzn()}}
+{\footnotesize\ttfamily \label{namespacegenerate__data_a72ae8fd035d61dbe0cbdce9498d7a156} 
+generate\+\_\+data.\+generate\+\_\+data\+\_\+dzn (\begin{DoxyParamCaption}\item[{}]{file\+\_\+name}{ = {\ttfamily None}, }\item[{}]{seed}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Writes generated data into dzn file
+@param file_name (string): Name of a file in which data will be saved
+@param seed (int): Used to reproduce conditions of generations
+\end{DoxyVerb}
+ \Hypertarget{namespacegenerate__data_a09c9fc33e08e873bb3eb79635086a3f2}\index{generate\_data@{generate\_data}!generate\_data\_json@{generate\_data\_json}}
+\index{generate\_data\_json@{generate\_data\_json}!generate\_data@{generate\_data}}
+\doxysubsubsection{\texorpdfstring{generate\_data\_json()}{generate\_data\_json()}}
+{\footnotesize\ttfamily \label{namespacegenerate__data_a09c9fc33e08e873bb3eb79635086a3f2} 
+generate\+\_\+data.\+generate\+\_\+data\+\_\+json (\begin{DoxyParamCaption}\item[{}]{file\+\_\+name}{ = {\ttfamily None}, }\item[{}]{seed}{ = {\ttfamily None}, }\item[{}]{user\+\_\+provided}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Writes generated data into json file
+@param file_name (string): Name of a file in which data will be saved
+@param seed (int): Used to reproduce conditions of generations
+@param user_provided (bool): Decides whether settings are read from file or from standard input
+\end{DoxyVerb}
+ \Hypertarget{namespacegenerate__data_a83cb5074c6d7362686733c07ba41e594}\index{generate\_data@{generate\_data}!read\_data\_json@{read\_data\_json}}
+\index{read\_data\_json@{read\_data\_json}!generate\_data@{generate\_data}}
+\doxysubsubsection{\texorpdfstring{read\_data\_json()}{read\_data\_json()}}
+{\footnotesize\ttfamily \label{namespacegenerate__data_a83cb5074c6d7362686733c07ba41e594} 
+generate\+\_\+data.\+read\+\_\+data\+\_\+json (\begin{DoxyParamCaption}\item[{}]{file\+\_\+name}{, }\item[{}]{output\+\_\+data}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Helps with reading data from json file
+@param file_name (string): File that is being read
+@param output_data (bool): Decides whether data is send to standard output. Used for debug
+\end{DoxyVerb}
+ 

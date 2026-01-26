@@ -1,0 +1,46 @@
+\doxysection{output\+\_\+solution Namespace Reference}
+\hypertarget{namespaceoutput__solution}{}\label{namespaceoutput__solution}\index{output\_solution@{output\_solution}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceoutput__solution_aacd0599ecaacfbfa0a11196fedac31b2}{output\+\_\+solution}} (value, weight, penalty\+\_\+value, final\+\_\+value, elements\+\_\+used)
+\item 
+\doxymbox{\hyperlink{namespaceoutput__solution_a5a5a86d84cb4e9d6b0507b9ce6c50111}{output\+\_\+solution\+\_\+json}} (value, weight, penalty\+\_\+value, final\+\_\+value, elements\+\_\+used, time\+\_\+elapsed, file\+\_\+name=None)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@file output_solution.py
+@brief Module that provides outputting solution into terminal or json file
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespaceoutput__solution_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceoutput__solution_aacd0599ecaacfbfa0a11196fedac31b2}\index{output\_solution@{output\_solution}!output\_solution@{output\_solution}}
+\index{output\_solution@{output\_solution}!output\_solution@{output\_solution}}
+\doxysubsubsection{\texorpdfstring{output\_solution()}{output\_solution()}}
+{\footnotesize\ttfamily \label{namespaceoutput__solution_aacd0599ecaacfbfa0a11196fedac31b2} 
+output\+\_\+solution.\+output\+\_\+solution (\begin{DoxyParamCaption}\item[{}]{value}{, }\item[{}]{weight}{, }\item[{}]{penalty\+\_\+value}{, }\item[{}]{final\+\_\+value}{, }\item[{}]{elements\+\_\+used}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Outputs solution to standard output
+@param data (dict): Data of an instance
+@param used_elements_indices (list): Contains a proper order of elements in knapsack
+\end{DoxyVerb}
+ \Hypertarget{namespaceoutput__solution_a5a5a86d84cb4e9d6b0507b9ce6c50111}\index{output\_solution@{output\_solution}!output\_solution\_json@{output\_solution\_json}}
+\index{output\_solution\_json@{output\_solution\_json}!output\_solution@{output\_solution}}
+\doxysubsubsection{\texorpdfstring{output\_solution\_json()}{output\_solution\_json()}}
+{\footnotesize\ttfamily \label{namespaceoutput__solution_a5a5a86d84cb4e9d6b0507b9ce6c50111} 
+output\+\_\+solution.\+output\+\_\+solution\+\_\+json (\begin{DoxyParamCaption}\item[{}]{value}{, }\item[{}]{weight}{, }\item[{}]{penalty\+\_\+value}{, }\item[{}]{final\+\_\+value}{, }\item[{}]{elements\+\_\+used}{, }\item[{}]{time\+\_\+elapsed}{, }\item[{}]{file\+\_\+name}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Outputs solution to json file
+@param value (float):
+@param weight (float):
+@param penalty_value (float):
+@param final_value (float):
+@param elements_used (list):
+@param time_elapsed (float):
+@param file_name (string)
+\end{DoxyVerb}
+ 

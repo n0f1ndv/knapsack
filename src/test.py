@@ -15,7 +15,8 @@ from greedy_knapsack import greedy_knapsack
 from generate_data import *
 from measure_memory import measure_memory
 
-SEED = 12349587
+# SEED = 12349587
+SEED = 94057234
 TEST_DATA_PATH = "data/example10.json"
 SETTINGS_PATH = "src/settings/genetic_settings.json"
 
