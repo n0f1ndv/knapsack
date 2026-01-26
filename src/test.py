@@ -1,21 +1,21 @@
 """
 @file test.py
-@brief Allows time test, quality test and RAM test also provides output of csv data as a lsit to the standard output
+@brief Provides time test, quality test and RAM test also provides output of csv data as a lsit to the standard output
 """
 
 import sys
 import csv
 import json
 import time
-import psutil
 import os
 from datetime import datetime
 
 from genetic_knapsack import genetic_knapsack
 from greedy_knapsack import greedy_knapsack
 from generate_data import *
+from measure_memory import measure_memory
 
-SEED = 95674
+SEED = 12349587
 TEST_DATA_PATH = "data/example10.json"
 SETTINGS_PATH = "src/settings/genetic_settings.json"
 
@@ -84,6 +84,7 @@ def main():
             solution_genetic = genetic_knapsack(read_data_json(f"data/test/test_{2**i}.json"), read_data_json(SETTINGS_PATH), minimize=False)
 
             results.append([solution_greedy[3], solution_genetic[3]])
+            print(solution_genetic[1])
 
         with open(f"test_results/quality_test{datetime.today().strftime("%Y%m%d%H%M%S")}.csv", "w", newline="") as csv_file:
             writer = csv.writer(csv_file)
@@ -95,7 +96,7 @@ def main():
         results = []
         results.append(["greedy", "genetic"])
 
-        for i in range(2, 9):
+        for i in range(2, 11):
             print(f"Test in progress {i}")
             generator_settings["items_number"] = [2**i, 2**i]
 
@@ -106,12 +107,14 @@ def main():
             generate_data_dzn(f"test/test_{2**i}", SEED)
             generate_data_json(f"test/test_{2**i}", SEED)
 
-            if sys.argv[2] == "genetic":
-                pass
-            elif sys.argv[2] == "greedy":
-                pass
-            else:
-                print("Option not recognised")
+            mem_used_genetic = measure_memory(genetic_knapsack, (read_data_json(f"data/test/test_{2**i}.json"), read_data_json(SETTINGS_PATH), False))
+            mem_used_greedy = measure_memory(greedy_knapsack, (read_data_json(f"data/test/test_{2**i}.json"), False))
+
+            results.append([mem_used_greedy, mem_used_genetic])
+
+        with open(f"test_results/mem_test{datetime.today().strftime("%Y%m%d%H%M%S")}.csv", "w", newline="") as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerows(results)
 
     elif sys.argv[1] == "--plot":
         plot(sys.argv[2])
